@@ -9,6 +9,9 @@ public class UserDto {
 
     private Long id;
 
+    @NotBlank(message = "The name must no be blank")
+    private String name;
+
     @NotBlank(message = "The e-mail must not be blank")
     private String email;
 

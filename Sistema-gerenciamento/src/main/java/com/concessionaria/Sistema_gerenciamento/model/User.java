@@ -16,6 +16,9 @@ public class User {
     @Getter @Setter
     private Long id;
 
+    @Getter @Setter
+    private String name;
+
     @Column(unique = true)
     @Getter @Setter
     private String email;

@@ -9,9 +9,6 @@ public class EmployeeDto {
 
     private Long id;
 
-    @NotBlank(message = "The name must not be blank")
-    private String name;
-
     @NotNull(message = "The user ID is null")
-    private Long userId;
+    private UserDto user;
 }

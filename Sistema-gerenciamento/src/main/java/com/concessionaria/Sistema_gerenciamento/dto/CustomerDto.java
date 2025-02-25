@@ -11,12 +11,9 @@ public class CustomerDto {
 
     private Long id;
 
-    @NotBlank(message = "The name must not be blank")
-    private String name;
-
 //    @NotNull(message = "The vehicle ID must not be null")
 //    private List<Long> vehicles;
 
-    @NotNull(message = "The user ID must not be null")
-    private Long userId;
+    @NotNull(message = "The user must not be null")
+    private UserDto user;
 }
