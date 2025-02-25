@@ -1,7 +1,9 @@
 package com.concessionaria.Sistema_gerenciamento.service;
 
 import com.concessionaria.Sistema_gerenciamento.model.Customer;
+import com.concessionaria.Sistema_gerenciamento.model.User;
 import com.concessionaria.Sistema_gerenciamento.reposity.CustomerRepository;
+import com.concessionaria.Sistema_gerenciamento.reposity.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -16,6 +18,7 @@ import java.util.List;
 public class CustomerServiceImpl implements CustomerService{
 
     private final CustomerRepository customerRepository;
+    private final UserRepository userRepository;
 
     @Override
     public List<Customer> list() {
@@ -29,15 +32,25 @@ public class CustomerServiceImpl implements CustomerService{
     }
 
     @Override
-    public Customer createNewCustomer(Customer customer) {
+    public Customer createCustomer(Customer customer) {
+
+        User user = customer.getUser();
+
+        if(user != null) {
+            if (user.getId() == null) {
+                user = userRepository.save(user);
+                customer.setUser(user);
+            }
+        }
+
         return customerRepository.save(customer);
     }
 
     @Override
     public Customer updateCustomer(Long id, Customer customer){
-        Customer updateCustomer = getById(id);
-        BeanUtils.copyProperties(customer, updateCustomer, "id");
-        return customerRepository.save(updateCustomer);
+        Customer updatedCustomer = getById(id);
+        BeanUtils.copyProperties(customer, updatedCustomer, "id");
+        return customerRepository.save(updatedCustomer);
     }
 
     @Override

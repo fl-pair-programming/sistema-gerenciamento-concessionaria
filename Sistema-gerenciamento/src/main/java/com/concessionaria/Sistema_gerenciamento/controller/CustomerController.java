@@ -26,7 +26,9 @@ public class CustomerController {
     public ResponseEntity<List<CustomerDto>> list() {
 
         List<Customer> customers = customerService.list();
-        List<CustomerDto> customerDtos = Collections.singletonList(customerMapper.toDto((Customer) customers));
+        List<CustomerDto> customerDtos = Collections.
+                singletonList(customerMapper.
+                        toDto((Customer) customers));
 
         return ResponseEntity.ok(customerDtos);
     }
@@ -40,9 +42,9 @@ public class CustomerController {
     }
 
     @PostMapping("/customers")
-    public ResponseEntity<CustomerDto> createNewCustomer(@RequestBody @Valid CustomerDto customerDto){
+    public ResponseEntity<CustomerDto> createCustomer(@RequestBody @Valid CustomerDto customerDto){
         Customer customer = customerMapper.toEntity(customerDto);
-        Customer savedCustomer = customerService.createNewCustomer(customer);
+        Customer savedCustomer = customerService.createCustomer(customer);
         CustomerDto savedCustomerDto = customerMapper.toDto(savedCustomer);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(savedCustomerDto);
@@ -63,4 +65,5 @@ public class CustomerController {
 
         return ResponseEntity.noContent().build();
     }
+
 }

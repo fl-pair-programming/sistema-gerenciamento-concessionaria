@@ -16,9 +16,6 @@ public class Employee {
     @Getter @Setter
     private Long id;
 
-    @Getter @Setter
-    private String name;
-
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name =  "id_user")
     @Getter @Setter

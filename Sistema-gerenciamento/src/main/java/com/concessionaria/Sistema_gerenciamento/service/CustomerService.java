@@ -9,7 +9,7 @@ public interface CustomerService {
 
     Customer getById (Long id);
 
-    Customer createNewCustomer(Customer customer);
+    Customer createCustomer(Customer customer);
 
     Customer updateCustomer(Long id, Customer customer);
 
